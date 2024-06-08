@@ -47,8 +47,23 @@ volume.addEventListener("input", function(){
 
 theaudio.addEventListener("durationchange", function(){
     time.max=theaudio.duration;
+    
 })
 
+///
+
+audio.addEventListener("loadedmetadata", function() {
+    time.max = audio.duration;
+});
+
+audio.addEventListener("timeupdate", function() {
+    time.value = audio.currentTime;
+});
+time.addEventListener("input", function() {
+    audio.currentTime = time.value;
+});
+
+///
 time.addEventListener('input', function(){
     theaudio.currentTime=time.value;
 })
